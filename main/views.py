@@ -14,8 +14,9 @@ from main.models import Story, Organization
 from main.utils import post_stories
 
 # TODO:
-# -error cases: user uninstalls
 # -add better/another demo image
+# -saving message
+# -better phrase pattern matching
 
 
 def home(request):
@@ -125,7 +126,7 @@ def get_stories(request, offset):
         Story.create_from_story_resp(resp)
 
     # Go through every organization and figure out which stories they haven't seen yet
-    for posting_settings in Organization.objects.all():
+    for posting_settings in Organization.objects.filter(uninstalled=False):
         posted = post_stories(top_stories, posting_settings)
 
         if posted and offset == 400:

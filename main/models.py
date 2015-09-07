@@ -51,6 +51,8 @@ class Organization(models.Model):
 
     config_url = models.CharField(max_length=256,  unique=False)
 
+    uninstalled = models.BooleanField(default=False)
+
     @property
     def webhook_url_end(self):
         return self.webhook_url[self.webhook_url.find("hooks.slack.com/services/") + 25:]

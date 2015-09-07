@@ -28,4 +28,9 @@ def post_stories(story_ids, posting_settings):
         resp = requests.post(posting_settings.webhook_url, data=json.dumps({'text': story.post_text(phrase),
                                                                             }))
 
+    if relevant_stories and resp.status_code == 404:
+        # slackernews was uninstalled by the organization
+        posting_settings.uninstalled = True
+        posting_settings.save()
+
     return len(relevant_stories) != 0
