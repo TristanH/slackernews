@@ -15,7 +15,6 @@ from main.utils import post_stories
 
 # TODO:
 # -error cases: user uninstalls
-# -github star button
 # -add better/another demo image
 
 
