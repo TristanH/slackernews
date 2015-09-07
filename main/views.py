@@ -15,7 +15,6 @@ from main.utils import post_stories
 
 # TODO:
 # -add better/another demo image
-# -saving message
 # -better phrase pattern matching
 
 

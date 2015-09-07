@@ -53,6 +53,10 @@
       font-size: 36px;
       margin-top: -20px;
     }
+    #saveStatus{
+      display: none;
+      margin-left: 12px;
+    }
   </style>
   </head>
   <body>
@@ -74,8 +78,9 @@
             <a href="#" id="addPhrase">+ New Phrase</a>
             <div id="buttons">
             <input type="submit" class="btn btn-success" id="save" value="Save! =)">
-
             <a href="{{ posting_settings.config_url }}"><label id="remove" class="btn btn-warning">Remove app <span class="glyphicon glyphicon-log-out"></span></label></a>
+            <p id="saveStatus">Saving...</p>
+
         </div>
       </form>
     </div>
@@ -89,7 +94,6 @@
 
   <script type="text/javascript">
 
-
   function addPhrase(phrase){
     $("#phrases").append('<li><input type="text" class="form-control phrase" placeholder="another phrase" value="' + phrase + '"></li>');
   }
@@ -101,18 +105,23 @@
 
   $("#save").click(function(e){
       e.preventDefault();
-      $.ajax({
-        'type': 'POST',
-        'url': '/savesettings/',
-        'data': {
-          'phrases': JSON.stringify($("input.phrase").map(function() {
-            return $(this).val();
-          }).get())
-        },
-        success: function(data){
-          document.location.reload();
-        }
-      });
+      if (!window.savingNow){
+          window.savingNow = true;
+          $("#saveStatus").show();
+          $.ajax({
+            'type': 'POST',
+            'url': '/savesettings/',
+            'data': {
+              'phrases': JSON.stringify($("input.phrase").map(function() {
+                return $(this).val();
+              }).get())
+            },
+            success: function(data){
+              document.location.reload();
+            }
+          });
+      }
+     
   });
 
     //CSRF stuff:
