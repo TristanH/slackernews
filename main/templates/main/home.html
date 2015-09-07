@@ -1,0 +1,63 @@
+<!-- hahahaha yes, it's very messy... it was also made in a rush :P -->
+<html>
+  <head>
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/3.3.0/ekko-lightbox.min.css">
+  <style type="text/css">
+    body{
+      background-color: rgb(246, 246, 239);
+      color: #636363;
+      text-align: center;
+    }
+    #title{
+      text-align: center;
+      margin-bottom: 30px;
+      text-transform: uppercase;
+      color: rgb(255, 102, 0);
+      font-weight: bold;
+      font-size: 60px;
+    }
+    #newsWord{
+      color: #636363;;
+    }
+    #description{
+      font-style: italic;
+      margin-bottom: 30px;
+    }
+    #sharing{
+      position: absolute;
+      right: 30px;
+      bottom:30px;
+    }
+
+    .ekko-lightbox{
+      padding: 40px;
+    }
+
+  </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1 id="title"> Slacker <span id="newsWord">News</span> </h1>
+      <a href="http://i.imgur.com/sryetjd.png" data-toggle="lightbox"><img src="http://i.imgur.com/sryetjd.png" width="300px"></a>
+      <a href="http://i.imgur.com/sryetjd.png" data-toggle="lightbox"><img src="http://i.imgur.com/sryetjd.png" width="300px"></a>
+      <h4 id="description">Know when your company/industry is mentioned on hacker news. It wastes time checking the front page so you don't have to ;)</h4>
+      <a href="https://slack.com/oauth/authorize?scope=incoming-webhook&client_id=3861036314.10034037077&redirect_uri={{ oauth_redirect_uri }}"><img alt="Add to Slack" height="60" src="https://platform.slack-edge.com/img/add_to_slack.png" srcset="https://platform.slack-edge.com/img/add_to_slack.png 1x, https://platform.slack-edge.com/img/add_to_slack@2x.png 2x"></a>
+      <div id="sharing"><iframe src="https://ghbtns.com/github-btn.html?user=twbs&repo=bootstrap&type=star&count=true&size=large" frameborder="0" scrolling="0" width="160px" height="30px"></iframe></div>
+    </div>
+
+  </body>
+
+  <script src="https://code.jquery.com/jquery-2.1.3.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/ekko-lightbox/3.3.0/ekko-lightbox.min.js"></script>
+  <script type="text/javascript">
+  $(document).ready(function(){
+    $(document).delegate('*[data-toggle="lightbox"]', 'click', function(event) {
+      event.preventDefault();
+      $(this).ekkoLightbox();
+    });
+  });
+  </script>
+</html>
