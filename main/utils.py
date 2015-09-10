@@ -1,4 +1,5 @@
 import json
+import re
 import requests
 
 from main.models import Story
@@ -15,7 +16,10 @@ def post_stories(story_ids, posting_settings):
 
         story = Story.objects.get(story_id=story_id)
         for phrase in key_phrases:
-            if phrase.lower() in story.name.lower():
+
+            regex = re.compile("({0})(s|(\'s)| |\(|\)|/|-|\"|\'|,|\.|\?|$)".format(phrase), re.IGNORECASE)
+
+            if regex.search(story.name.lower()):
                 relevant_stories.append([story, phrase])
                 already_posted.add(story_id)
                 break
