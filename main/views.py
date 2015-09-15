@@ -15,7 +15,6 @@ from main.utils import post_stories
 
 # TODO:
 # -add better/another demo image
-# -better phrase pattern matching
 
 
 def home(request):
